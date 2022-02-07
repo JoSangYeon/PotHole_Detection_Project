@@ -1,7 +1,9 @@
 # https://github.com/HideOnHouse/TorchBase
 
+import pickle
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 import torch
 import torch.nn as nn
@@ -15,6 +17,23 @@ from model import MyModel
 from learning import train, evaluate, calc_acc
 from inference import inference
 
+def draw_history(history):
+    train_loss = history["train_loss"]
+    train_acc = history["train_acc"]
+    valid_loss = history["valid_loss"]
+    valid_acc = history["valid_acc"]
+
+    plt.subplot(2,1,1)
+    plt.plot(train_loss, label="train")
+    plt.plot(valid_loss, label="valid")
+    plt.legend()
+
+    plt.subplot(2,1,2)
+    plt.plot(train_acc, label="train")
+    plt.plot(valid_acc, label="valid")
+    plt.legend()
+
+    plt.show()
 
 def main():
     train_path = "Train_datasets_labels.csv"
@@ -43,9 +62,9 @@ def main():
     valid_dataset = MyDataset(valid_data)
     test_dataset = MyDataset(test_data)
 
-    train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
-    valid_loader = DataLoader(valid_dataset, batch_size=32, shuffle=True)
-    test_loader = DataLoader(test_dataset, batch_size=32)
+    train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+    valid_loader = DataLoader(valid_dataset, batch_size=64, shuffle=True)
+    test_loader = DataLoader(test_dataset, batch_size=64)
 
     # label_tags
     label_tags = ["포트홀 없음", "포트홀", "보수 완료된 포트홀"]
@@ -62,9 +81,16 @@ def main():
     # Test
     print("============================= Test =============================")
     test_loss, test_acc = evaluate(model, device, criterion, test_loader)
+    print("test loss : {:.6f}".format(test_loss))
+    print("test acc : {:.3f}".format(test_acc))
 
-    torch.save(model, "models/model1.pt")
+    file_name = "model5"
+    torch.save(model, f"models/{file_name}.pt")
+    with open(f"models/{file_name}_history.pickle", 'wb') as f:
+        pickle.dump(history, f, pickle.HIGHEST_PROTOCOL)
 
+    print(history)
+    draw_history(history)
 
 if __name__ == '__main__':
     main()
