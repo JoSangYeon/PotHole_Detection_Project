@@ -56,11 +56,11 @@ def main():
     criterion = torch.nn.CrossEntropyLoss()
 
     # train
-    print("============================== Train ==============================")
+    print("============================= Train =============================")
     history = train(model, device, optimizer, criterion, 20, train_loader, valid_loader)
 
     # Test
-    print("============================== Test ==============================")
+    print("============================= Test =============================")
     test_loss, test_acc = evaluate(model, device, criterion, test_loader)
 
     torch.save(model, "models/model1.pt")
