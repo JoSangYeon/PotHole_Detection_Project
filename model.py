@@ -69,15 +69,12 @@ class MyModel(nn.Module):
 
         self.conv3_1 = nn.Conv2d(in_channels=128, out_channels=256, kernel_size=3, padding=1)
         self.conv3_2 = nn.Conv2d(in_channels=256, out_channels=256, kernel_size=3, padding=1)
-        self.conv3_3 = nn.Conv2d(in_channels=256, out_channels=256, kernel_size=3, padding=1)
 
         self.conv4_1 = nn.Conv2d(in_channels=256, out_channels=512, kernel_size=3, padding=1)
         self.conv4_2 = nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, padding=1)
-        self.conv4_3 = nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, padding=1)
 
         self.conv5_1 = nn.Conv2d(in_channels=512, out_channels=1024, kernel_size=3, padding=1)
         self.conv5_2 = nn.Conv2d(in_channels=1024, out_channels=1024, kernel_size=3, padding=1)
-        self.conv5_3 = nn.Conv2d(in_channels=1024, out_channels=1024, kernel_size=3, padding=1)
 
         self.bn1 = nn.BatchNorm2d(64)
         self.bn2 = nn.BatchNorm2d(128)
@@ -114,8 +111,6 @@ class MyModel(nn.Module):
         x = self.act_fn(x)
         x = self.conv3_2(x)         # (batch, 128, 80, 80) -> (batch, 256, 80, 80)
         x = self.act_fn(x)
-        x = self.conv3_3(x)         # (batch, 256, 80, 80) -> (batch, 256, 80, 80)
-        x = self.act_fn(x)
         x = self.pool(x)            # (batch, 256, 80, 80) -> (batch, 256, 40, 40)
 
         x = self.conv4_1(x)         # (batch, 256, 40, 40) -> (batch, 512, 40, 40)
@@ -123,16 +118,12 @@ class MyModel(nn.Module):
         x = self.act_fn(x)
         x = self.conv4_2(x)         # (batch, 512, 40, 40) -> (batch, 512, 40, 40)
         x = self.act_fn(x)
-        x = self.conv4_3(x)         # (batch, 512, 40, 40) -> (batch, 512, 40, 40)
-        x = self.act_fn(x)
         x = self.pool(x)            # (batch, 512, 40, 40) -> (batch, 512, 20, 20)
 
         x = self.conv5_1(x)         # (batch, 512, 20, 20) -> (batch, 1024, 20, 20)
         x = self.bn5(x)
         x = self.act_fn(x)
         x = self.conv5_2(x)         # (batch, 1024, 40, 40) -> (batch, 1024, 20, 20)
-        x = self.act_fn(x)
-        x = self.conv5_3(x)         # (batch, 1024, 40, 40) -> (batch, 1024, 20, 20)
         x = self.act_fn(x)
         x = self.pool(x)            # (batch, 1024, 40, 40) -> (batch, 1024, 10, 10)
 
