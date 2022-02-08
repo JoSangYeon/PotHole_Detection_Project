@@ -13,20 +13,25 @@
 + Loss : , Accuracy : %
 
 ## Model 3
-+ Model 2에 ResNet의 잔차학습을 적용한 Network
++ Model 2에 Channel Attention을 적용
 + Attention 적용(channel 어텐션, self 어텐션)
 + Loss : , Accuracy : %
 
 ## Model 4
++ Model 3에 ResNet의 잔차학습을 적용한 Network
++ Attention 적용(channel 어텐션, self 어텐션)
++ Loss : , Accuracy : %
+
+## Model 5
 + VGG
 + Pre-Trained
 + Loss : , Accuracy : %
 
-## Model 5
+## Model 6
 + ResNet
 + Pre-Trained
 + Loss : , Accuracy : %
 
-## Model 6
+## Model 7
 + Vision Transformer 적용
 + 예정
