@@ -55,6 +55,9 @@ from torchsummary import summary as summary_
 
 
 class MyModel(nn.Module):
+    """
+    VGG 컨셉 : https://bskyvision.com/504
+    """
     def __init__(self):
         super(MyModel, self).__init__()
 

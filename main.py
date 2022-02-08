@@ -62,9 +62,9 @@ def main():
     valid_dataset = MyDataset(valid_data)
     test_dataset = MyDataset(test_data)
 
-    train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
-    valid_loader = DataLoader(valid_dataset, batch_size=32, shuffle=True)
-    test_loader = DataLoader(test_dataset, batch_size=32)
+    train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
+    valid_loader = DataLoader(valid_dataset, batch_size=16, shuffle=True)
+    test_loader = DataLoader(test_dataset, batch_size=16)
 
     # label_tags
     label_tags = ["포트홀 없음", "포트홀", "보수 완료된 포트홀"]
