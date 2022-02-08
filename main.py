@@ -62,9 +62,9 @@ def main():
     valid_dataset = MyDataset(valid_data)
     test_dataset = MyDataset(test_data)
 
-    train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
-    valid_loader = DataLoader(valid_dataset, batch_size=64, shuffle=True)
-    test_loader = DataLoader(test_dataset, batch_size=64)
+    train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+    valid_loader = DataLoader(valid_dataset, batch_size=32, shuffle=True)
+    test_loader = DataLoader(test_dataset, batch_size=32)
 
     # label_tags
     label_tags = ["포트홀 없음", "포트홀", "보수 완료된 포트홀"]
@@ -84,12 +84,12 @@ def main():
     print("test loss : {:.6f}".format(test_loss))
     print("test acc : {:.3f}".format(test_acc))
 
-    file_name = "model5"
+    file_name = "model2"
     torch.save(model, f"models/{file_name}.pt")
     with open(f"models/{file_name}_history.pickle", 'wb') as f:
         pickle.dump(history, f, pickle.HIGHEST_PROTOCOL)
 
-    print(history)
+    # print(history)
     draw_history(history)
 
 if __name__ == '__main__':
