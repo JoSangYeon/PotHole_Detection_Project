@@ -76,7 +76,7 @@ def main():
 
     # train
     print("============================= Train =============================")
-    history = train(model, device, optimizer, criterion, 20, train_loader, valid_loader)
+    history = train(model, device, optimizer, criterion, 10, train_loader, valid_loader)
 
     # Test
     print("============================= Test =============================")
