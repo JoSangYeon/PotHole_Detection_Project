@@ -5,7 +5,7 @@ import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from torchsummary import summary as summary_
 
-"""class MyModel(nn.Module):
+class MyModel(nn.Module):
     def __init__(self):
         super(MyModel, self).__init__()
 
@@ -51,13 +51,10 @@ from torchsummary import summary as summary_
         x = self.drop(x)
 
         x = self.fc2(x)  # (batch, 32) -> (batch, 3)
-        return x"""
+        return x
 
-
-class MyModel(nn.Module):
-    """
-    VGG 컨셉 : https://bskyvision.com/504
-    """
+"""class MyModel(nn.Module):
+    # VGG 컨셉 : https://bskyvision.com/504
     def __init__(self):
         super(MyModel, self).__init__()
 
@@ -135,13 +132,13 @@ class MyModel(nn.Module):
         x = self.drop(x)
 
         x = self.fc2(x)  # (batch, 128) -> (batch, 3)
-        return x
+        return x"""
 
-class MyModel(nn.Module):
-    """
-    VGG 컨셉 : https://bskyvision.com/504
-    VGG의 컨셉에 ResNet의 잔차학습 개념을 적용
-    """
+"""class MyModel(nn.Module):
+    
+    # VGG 컨셉 : https://bskyvision.com/504
+    # VGG의 컨셉에 ResNet의 잔차학습 개념을 적용
+    
     def __init__(self):
         super(MyModel, self).__init__()
 
@@ -220,7 +217,7 @@ class MyModel(nn.Module):
         x = self.drop(x)
 
         x = self.fc2(x)  # (batch, 128) -> (batch, 3)
-        return x
+        return x"""
 
 
 def main():

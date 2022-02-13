@@ -3,7 +3,7 @@
 ## Model 1
 + Simple Convolution Network
 + 단순히 합성곱 연산을 쌓은 네트워크
-+ Loss : 0.644734, Accuracy : 71.3%
++ loss=0.436714, acc=0.748
 
 
 ## Model 2
