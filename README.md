@@ -1,37 +1,25 @@
 # PotHole Detection Project
 
-## Model 1
+## Model 1 ~ 3
 + Simple Convolution Network
 + 단순히 합성곱 연산을 쌓은 네트워크
-+ loss=0.436714, acc=0.748
++ model 1 :
+    + loss : 0.750558
+	+ acc : 0.664
++ model 2 :
+    + model 1 + Channel_Attnetion
+    + loss : 0.435107
+	+ acc : 0.807
++ model 3 :
+    + model 2 + self_Attention(fc_layer)
+    + loss : 1.083568
+	+ acc : 0.697
 
 
-## Model 2
+## Model 4~6
 + deep Convolution Network
 + VGG의 컨셉으로한 Network
-+ Attention 적용(channel 어텐션, self 어텐션)
-+ Loss : , Accuracy : %
-
-## Model 3
-+ Model 2에 Channel Attention을 적용
-+ Attention 적용(channel 어텐션, self 어텐션)
-+ Loss : , Accuracy : %
-
-## Model 4
-+ Model 3에 ResNet의 잔차학습을 적용한 Network
-+ Attention 적용(channel 어텐션, self 어텐션)
-+ Loss : , Accuracy : %
-
-## Model 5
-+ VGG
-+ Pre-Trained
-+ Loss : , Accuracy : %
-
-## Model 6
-+ ResNet
-+ Pre-Trained
-+ Loss : , Accuracy : %
-
-## Model 7
-+ Vision Transformer 적용
-+ 예정
++ model 4 :
+    + test loss : 0.643273
+    + test acc : 0.756
+    
