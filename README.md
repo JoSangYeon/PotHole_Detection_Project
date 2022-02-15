@@ -22,4 +22,9 @@
 + model 4 :
     + test loss : 0.643273
     + test acc : 0.756
-    
++ model 5 :
+    + test loss : 0.498135
+    + test acc : 0.790
++ model 6 :
+    + test loss : 0.434023
+    + test acc : 0.849
