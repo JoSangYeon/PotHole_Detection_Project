@@ -26,7 +26,7 @@
 ## Model
 
 ### Model 1 ~ 3
-+ model 1
++ model 1 :
     + Simple Convolution Network
     + 단순히 합성곱 연산을 쌓은 네트워크
 + model 2 :
@@ -34,13 +34,18 @@
 + model 3 :
     + model 2 + self-Attention(on FC Layer)
 ### Model 4~6
-+ model 4
++ model 4 :
     + deep Convolution Network
     + VGG의 컨셉으로한 Network
 + model 5 :
     + model 4 + Channel-Attention
 + model 6 :
     + model 5 + Self-Attention(On FC Layer)
+
+### Model 7~
++ model 7 :
+    + VVG 컨셉의 Model 4에 잔차연결을 추가한 컨셉의 모델
+    + model 4 + Residual Connection
     
 ## Result
 
