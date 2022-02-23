@@ -32,7 +32,7 @@
 + model 2 :
     + model 1 + Channel-Attnetion
 + model 3 :
-    + model 2 + self-Attention(on FC Layer)
+    + model 2 + Self-Attention(on FC Layer)
 ### Model 4~6
 + model 4 :
     + deep Convolution Network
@@ -40,13 +40,103 @@
 + model 5 :
     + model 4 + Channel-Attention
 + model 6 :
-    + model 5 + Self-Attention(On FC Layer)
+    + model 5 + Self-Attention(on FC Layer)
 
 ### Model 7~
 + model 7 :
     + VVG 컨셉의 Model 4에 잔차연결을 추가한 컨셉의 모델
     + model 4 + Residual Connection
++ model 8 :
+    + model 7 + Channel-Attention
++ model 9 :
+    + Model 8 + Self-Attention(on FC Layer)
     
 ## Result
+### Performance table.
+|  Model  |                              description                             |  Loss  | Accuracy |
+|:-------:|:--------------------------------------------------------------------:|:------:|:--------:|
+| Model_1 | Simple CNN                                                           | 0.7505 |   66.4%  |
+| Model_2 | Simple CNN + Attention(Channel)                                      | 0.4351 |   80.7%  |
+| Model_3 | Simple CNN + Attention(Channel) + Self-Attention(on FC Layer)        | 1.0835 |   69.7%  |
+| Model_4 | VGG16 Concept CNN                                                    | 0.6275 |   75.6%  |
+| Model_5 | VGG16 Concept CNN + Attention(Channel)                               | 0.5021 |   79.0%  |
+| Model_6 | VGG16 Concept CNN + Attention(Channel) + Self-Attention(on FC Layer) | 0.4266 |   84.9%  |
+| Model_7 | VGG16 + Residual Connection                                          | 0.5739 |   84.9%  |
+| Model_8 | VGG16 + Residual Connection + Attention(channel)                     | 0.7012 |   81.5%  |
+| Model_9 | VGG16 + Residual Connection + Attention(Channel, Self-Attention)     | 0.6299 |   77.3%  |
+
+### Result Summary
+![Model_Summary](https://user-images.githubusercontent.com/28241676/155266429-971597a2-49ea-4bf5-ac85-f656ccb9538d.png)
+<details>
+<summary>모델 Inference 결과 Shell</summary>
+
+<div markdown="1">
+
+```shell
+Inference MyModel_1.pt
+2it [00:03,  1.74s/it, loss=0.639662, acc=0.664]
+	loss : 0.750558
+	acc : 0.664
+
+
+Inference MyModel_2.pt
+2it [00:00,  2.34it/s, loss=0.298573, acc=0.807]
+	loss : 0.435107
+	acc : 0.807
+
+
+Inference MyModel_3.pt
+2it [00:00,  2.39it/s, loss=0.676090, acc=0.697]
+	loss : 1.083568
+	acc : 0.697
+
+
+Inference MyModel_4.pt
+2it [00:00,  2.15it/s, loss=0.559131, acc=0.756]
+	loss : 0.627527
+	acc : 0.756
+
+
+Inference MyModel_5.pt
+2it [00:00,  2.24it/s, loss=0.396172, acc=0.790]
+	loss : 0.502188
+	acc : 0.790
+
+
+Inference MyModel_6.pt
+2it [00:00,  2.19it/s, loss=0.202595, acc=0.849]
+	loss : 0.426644
+	acc : 0.849
+
+
+Inference MyModel_7.pt
+2it [00:00,  2.22it/s, loss=0.395379, acc=0.849]
+	loss : 0.573950
+	acc : 0.849
+
+
+Inference MyModel_8.pt
+2it [00:00,  2.21it/s, loss=0.763084, acc=0.815]
+	loss : 0.701221
+	acc : 0.815
+
+
+Inference MyModel_9.pt
+2it [00:00,  2.19it/s, loss=0.351030, acc=0.773]
+	loss : 0.629991
+	acc : 0.773
+```
+
+</div>
+</details>
 
 ## Conclusion
+Attention의 성능 향상을 체감할 수 있는 좋은 프로젝트였다.<br>
+CNN단(Feature Encoding)에서는 Channel-Attention을 통해 집중해서 봐야할 영역을 스스로 학습시켜서 학습의 향상을 보였다.<br>
+또한 분류기(FC Layer)단에서는 Transformer의 Self-Attention 기법을 통해 정제된 특징벡터에 대한 관계를 학습을 유도했다.
+
+개인적으로 Model 7~9가 가장 성능이 좋을 것으로 예상했는데, 생각보다 낮았던 이유는 과적합이 발생한 것으로 생각된다.<br>
+  *(실제로 그래프를 보면, 특정 Epoch부터 Loss가 늘어난 것을 볼 수 있다.)*<br>
+
+Paper with Code에 보면, 여러가지 Attention Method가 소개되고 있는데, 이번 계기를 통해서 성능을 향상 시킬 수 있는 여러가지 Attention 기법을 찾아보고 공부해봐야겠다.
+
