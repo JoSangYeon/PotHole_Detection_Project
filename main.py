@@ -71,7 +71,7 @@ def main():
     # label_tags
     label_tags = ["포트홀 없음", "포트홀", "보수 완료된 포트홀"]
 
-    model_name = "MyModel_7"
+    model_name = "MyModel_9"
     model = get_Model(model_name)
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     optimizer = torch.optim.AdamW(model.parameters())
