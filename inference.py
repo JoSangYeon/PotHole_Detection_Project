@@ -1,4 +1,6 @@
 import os
+import matplotlib.pyplot as plt
+import pickle
 import torch
 from torch.utils.data import Dataset, DataLoader
 from sklearn.model_selection import train_test_split
@@ -8,6 +10,33 @@ from dataset import MyDataset
 from model import get_Model
 
 import pandas as pd
+
+def summary_history():
+    file_list = os.listdir(f"models/")
+    history_list = []
+
+    for file in file_list:
+        if file[-6:] != "pickle":
+            continue
+        with open(f"models/{file}", "rb") as f:
+            history_list.append(pickle.load(f))
+
+    plt.figure(figsize=(8,8))
+    for idx, history in enumerate(history_list):
+        plt.subplot(2,1,1)
+        plt.plot(history["valid_loss"], label="Model {}".format(idx+1))
+        plt.title("Loss")
+        plt.ylim(0.1, 3.5)
+        plt.legend()
+
+        plt.subplot(2,1,2)
+        plt.plot(history["valid_acc"], label="Model {}".format(idx+1))
+        plt.title("Accuracy")
+        plt.ylim(0.15, 1.0)
+        plt.legend()
+
+    plt.show()
+
 
 
 def inference(device, criterion, inference_loader):
@@ -52,6 +81,7 @@ def main():
 
     inference(device, criterion, test_loader)
 
+    summary_history()
 
 if __name__ == '__main__':
     main()
